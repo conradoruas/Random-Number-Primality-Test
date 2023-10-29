@@ -20,14 +20,13 @@ public class MWC implements Algorithm {
     }
 
     public Result generateRandomNumber(int numBits) {
-        this.bits = bits;
-        state = state.multiply(multiplier).add(carry);
-        carry = state.shiftRight(numBits);
-        state = state.and(BigInteger.ONE.shiftLeft(numBits).subtract(BigInteger.ONE));
+        this.bits = numBits;
+        BigInteger base = BigInteger.valueOf(2).pow(numBits);
+        state = state.multiply(multiplier).add(carry).mod(base);
+        carry = state.divide(base);
         this.finalTime = System.currentTimeMillis() - this.initialTime;
 
         Result result = new Result("MWC", state,this.finalTime, numBits);
         return result;
     }
-
 }

@@ -33,8 +33,4 @@ public class LCG implements Algorithm {
 
         return result;
     }
-
-    public long getFinalTime() {
-        return finalTime;
-    }
 }

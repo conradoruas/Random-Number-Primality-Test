@@ -23,7 +23,7 @@ public class PrimeFactory implements Factory {
     public void getPrime() {
         try {
             for (Result result : table.getAllElements()) {
-                if (result.getNumberBits() < 2049) {
+                if (result.getNumberBits() < 2048) {
                     long initialTime = System.currentTimeMillis();
                     boolean notPrime = true;
                     BigInteger possiblePrimeNumber = result.getRandomNumber();
