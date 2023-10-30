@@ -13,6 +13,8 @@ public class PrimeFactory implements Factory {
     Algorithm numberGeneratorAlgorithm;
     PrimeAlgorithm primeAlgorithm;
 
+    // Construtor que recebe a tabela de numeros aleatorios populada, uma nova tabela de primos,
+    // algoritmos de geração de números e de teste de primalidade
     public PrimeFactory(Table table, Table primeTable,  PrimeAlgorithm primeAlgorithm, Algorithm numberGeneratorAlgorithm) {
         this.table = table;
         this.primeTable = primeTable;
@@ -20,6 +22,7 @@ public class PrimeFactory implements Factory {
         this.primeAlgorithm = primeAlgorithm;
     }
 
+    // Método para obter números primos
     public void getPrime() {
         try {
             for (Result result : table.getAllElements()) {
@@ -45,14 +48,17 @@ public class PrimeFactory implements Factory {
         }
     }
 
+    // Método para obter um novo número pseudoaleatório com o tamanho de bits especificado
     public Result getNewRandomNumber(int bits) {
         return numberGeneratorAlgorithm.generateRandomNumber(bits);
     }
 
+    // Método para verificar se um número é primo
     public boolean isPrime(BigInteger number) {
        return primeAlgorithm.isPrime(number, 10);
     }
 
+    // Método para preencher a tabela de primos com os números gerados pelo algoritmo
     public void populateTable() {
         for (PossibleBits bits : PossibleBits.values()) {
             int bit = bits.getValue();

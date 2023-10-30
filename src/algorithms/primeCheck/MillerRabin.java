@@ -6,6 +6,7 @@ import java.util.Random;
 public class MillerRabin implements PrimeAlgorithm {
     public BigInteger primeNumber;
 
+    // Função para calcular x^y mod p
     public BigInteger power(BigInteger x, BigInteger y, BigInteger p) {
         BigInteger res = BigInteger.ONE;
         x = x.mod(p);
@@ -21,6 +22,7 @@ public class MillerRabin implements PrimeAlgorithm {
         return res;
     }
 
+    // Teste de Miller-Rabin para um valor específico "a"
     public boolean millerTest(BigInteger d, BigInteger n) {
         BigInteger a = BigInteger.TWO.add(new BigInteger(n.bitLength() - 2, new Random()));
 
@@ -45,6 +47,7 @@ public class MillerRabin implements PrimeAlgorithm {
         return false;
     }
 
+    // Função principal para verificar se um número é primo usando o algoritmo Miller-Rabin
     public boolean isPrime(BigInteger n, int k) {
         this.primeNumber = n;
         if (n.compareTo(BigInteger.ONE) <= 0 || n.equals(BigInteger.valueOf(4))) {
@@ -54,6 +57,7 @@ public class MillerRabin implements PrimeAlgorithm {
             return true;
         }
 
+        // Encontrar o valor "d" e garantir que "n" seja ímpar
         BigInteger d = n.subtract(BigInteger.ONE);
         while (d.mod(BigInteger.TWO).equals(BigInteger.ZERO)) {
             d = d.divide(BigInteger.TWO);
@@ -67,6 +71,8 @@ public class MillerRabin implements PrimeAlgorithm {
 
         return true;
     }
+
+    // Retorna o nome do algoritmo
     public String getName() {
         return "Miller Rabin";
     }
